@@ -1,0 +1,6 @@
+<h1 class="typewrite-container">
+        <a href="#" class="typewrite" data-period="2000" data-type='[ "Welcome to SJCIT Admin Portal", "Computer Science", "Machine Learning", "Electronics and Communication" ]'>
+            <span class="wrap"></span>
+        </a>
+    </h1>
+php is a server side language

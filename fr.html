@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SJC Institute of Technology - Administrative Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>SJC Institute of Technology</h1>
+            <p>Welcome to the Administrative Portal</p>
+        </div>
+    </header>
+    <h1 class="typewrite-container">
+        <a href="#" class="typewrite" data-period="2000" data-type='[ "Welcome to SJCIT Admin Portal", "Computer Science", "Machine Learning", "Electronics and Communication" ]'>
+            <span class="wrap"></span>
+        </a>
+    </h1>
+
+    <script>
+        var TxtType = function(el, toRotate, period) {
+            this.toRotate = toRotate;
+            this.el = el;
+            this.loopNum = 0;
+            this.period = parseInt(period, 10) || 2000;
+            this.txt = '';
+            this.tick();
+            this.isDeleting = false;
+        };
+    
+        TxtType.prototype.tick = function() {
+            var i = this.loopNum % this.toRotate.length;
+            var fullTxt = this.toRotate[i];
+    
+            if (this.isDeleting) {
+            this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+            this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+    
+            this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+    
+            var that = this;
+            var delta = 200 - Math.random() * 100;
+    
+            if (this.isDeleting) { delta /= 2; }
+    
+            if (!this.isDeleting && this.txt === fullTxt) {
+            delta = this.period;
+            this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+            this.isDeleting = false;
+            this.loopNum++;
+            delta = 500;
+            }
+    
+            setTimeout(function() {
+            that.tick();
+            }, delta);
+        };
+    
+        window.onload = function() {
+            var elements = document.getElementsByClassName('typewrite');
+            for (var i=0; i<elements.length; i++) {
+                var toRotate = elements[i].getAttribute('data-type');
+                var period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                  new TxtType(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+            // INJECT CSS
+            var css = document.createElement("style");
+            css.type = "text/css";
+            css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+            document.body.appendChild(css);
+        };
+      </script>
+    <main>
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="section-header">
+                <h2>About Us</h2>
+            </div>
+            <p>Welcome to the SJC Institute of Technology, a center of excellence in technical education. Established in 1997, we are committed to fostering innovation, research, and academic excellence in engineering and technology fields.</p>
+            <p>Our state-of-the-art campus is equipped with modern laboratories, workshops, and resources to nurture the growth of future technologists and entrepreneurs.</p>
+        </section>
+
+        <!-- Departments Section -->
+        <section id="departments" class="section">
+            <div class="section-header">
+                <h2>Departments</h2>
+            </div>
+            <ul class="department-list">
+                <li><strong>Department of Computer Science</strong> - Focusing on software development, data analysis, and AI research.</li>
+                <li><strong>Department of Electrical Engineering</strong> - Specializing in electrical circuits, power systems, and renewable energy solutions.</li>
+                <li><strong>Department of Mechanical Engineering</strong> - Offering hands-on experience in mechanical systems, robotics, and manufacturing.</li>
+                <li><strong>Department of Civil Engineering</strong> - Providing in-depth knowledge on construction, structural analysis, and infrastructure development.</li>
+                <li><strong>Department of Management Studies</strong> - Preparing students for leadership roles with courses in business management and entrepreneurship.</li>
+            </ul>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="section">
+            <div class="section-header">
+                <h2>Latest News & Events</h2>
+            </div>
+            <ul class="news-list">
+                <li><strong>Annual Tech Fest 2024</strong> - Join us for the annual event celebrating innovation, showcasing projects by students and industry leaders.</li>
+                <li><strong>Admissions Open for 2024</strong> - Applications are now open for undergraduate and postgraduate programs. Apply online now!</li>
+                <li><strong>Guest Lecture on AI</strong> - A lecture by Dr. John Doe on the advancements in Artificial Intelligence. Register to attend.</li>
+            </ul>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section id="contact" class="section">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+            </div>
+            <p>If you have any inquiries or would like to know more about our programs, feel free to contact us below:</p>
+            <form id="contact-form" class="contact-form">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required><br>
+
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea><br>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+
+        <!-- Chatbot Container -->
+        <div class="chatbot-container">
+            <div id="chatbot" class="chatbot">
+                <!-- Botpress Web Chatbot will be rendered here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SJC Institute of Technology. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/11/05/16/20241105160353-9FG2LY8B.js"></script>
+</body>
+</html>
